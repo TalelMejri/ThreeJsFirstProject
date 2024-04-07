@@ -13,11 +13,20 @@ const aspect = {
 
 const camera = new THREE.PerspectiveCamera(100, aspect.width / aspect.height, 1, 2000);
 camera.position.z = 3;
-camera.position.y = 1;
-camera.position.x = 1;
 scene.add(camera);
 
 const canvas = document.querySelector(".draw");
 const renderer = new THREE.WebGLRenderer({ canvas });
 renderer.setSize(aspect.width, aspect.height);
-renderer.render(scene, camera);
+
+// const clock = new THREE.Clock();
+
+const animate = () => {
+    // const elapsedTime = clock.getElapsedTime();
+    mesh.rotation.x += 0.1;
+    mesh.rotation.y += 0.1;
+    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+}
+
+animate();
